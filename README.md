@@ -1,4 +1,7 @@
 ## Romain Lavayssiere B3
+### Compte déjà existant pour tester (toujours possibilité d'inscrire un utilisateur)
+- email : paya@paya.paya
+- password : payapaya
 # Gestion de Tâches Collaborative - Laravel
 
 ## Description du Projet
