@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->enum('status', ['À faire', 'En cours', 'Terminé'])->default('À faire');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Ajout de la clé étrangère
             $table->timestamps();
         });
     }

@@ -23,24 +23,29 @@ class TaskController extends Controller
 
     // Enregistrer une nouvelle tâche
     public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'status' => 'in:À faire,En cours,Terminé',
-        ]);
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'status' => 'in:À faire,En cours,Terminé',
+    ]);
 
-        Auth::user()->tasks()->create($request->all());
+    Auth::user()->tasks()->create([
+        'title' => $request->title,
+        'description' => $request->description,
+        'status' => $request->status,
+    ]);
 
-        return redirect()->route('tasks.index')->with('success', 'Tâche créée avec succès !');
-    }
+    return redirect()->route('tasks.index')->with('success', 'Tâche créée avec succès !');
+}
 
     // Afficher une tâche spécifique
     public function show(Task $task)
-    {
-        $this->authorize('view', $task);
-        return view('tasks.show', compact('task'));
-    }
+{
+    $this->authorize('view', $task); // Vérifie que l'utilisateur peut voir la tâche
+    return view('tasks.show', compact('task'));
+}
+
 
     // Afficher le formulaire d'édition
     public function edit(Task $task)
